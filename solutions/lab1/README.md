@@ -305,13 +305,12 @@ errors = {method: [] for method in methods}
 for n in n_array:
     subset = numbers[:n]
     true_sum = true_sum_value(subset)
-
-    errors['a'].append(abs(safe_sum(sum_double_precision(subset)) - true_sum) / true_sum)
-    errors['b'].append(abs(safe_sum(sum_single_precision(subset)) - true_sum) / true_sum)
-    kahan_error = abs(safe_sum(sum_kahan_alg(subset)) - true_sum) / true_sum
+    errors['a'].append(safe_sum(abs(sum_double_precision(subset) - true_sum) / true_sum))
+    errors['b'].append(safe_sum(abs(sum_single_precision(subset) - true_sum) / true_sum))
+    kahan_error = safe_sum(abs(sum_kahan_alg(subset) - true_sum) / true_sum)
     errors['c'].append(kahan_error if kahan_error > 0 else 1e-20)
-    errors['d'].append(abs(safe_sum(sum_rising(subset)) - true_sum) / true_sum)
-    errors['e'].append(abs(safe_sum(sum_falling(subset)) - true_sum) / true_sum)
+    errors['d'].append(safe_sum(abs(sum_rising(subset) - true_sum) / true_sum))
+    errors['e'].append(safe_sum(abs(sum_falling(subset) - true_sum) / true_sum))
 
 plt.figure(figsize=(10, 6))
 for method in methods:
@@ -339,11 +338,11 @@ Na wykresie przedstawiono porównanie błędów względnych różnych metod sumo
 #### Wnioski:
 
 1. **Analiza wyników:**
-  Metody **b, d, e** posiadają bardzo przybliżone względem siebie wartości błędów. Metoda c posiada bardzo dużą dokładność obliczeń, która przy obranym systemie liczbowym (float32) zwraca wynik 0.0. Biorąc pod uwagę, że w skali logarytmicznej nie może istnieć wartość 0 dla wyników **c** obrano wartość 10^(-20). Metoda **a** okazała się drugą najbardziej dokładną metodą sumowania.
+  Metody **b, d, e** posiadają bardzo przybliżone względem siebie wartości błędów. Metoda c posiada bardzo dużą dokładność obliczeń, która przy obranym systemie liczbowym (float32) zwraca wynik 0.0. Biorąc pod uwagę, że w skali logarytmicznej nie może istnieć wartość 0 dla wyników **c** obrano wartość 10^(-16). Metoda **a** okazała się drugą najbardziej dokładną metodą sumowania.
 
 2. **Wnioski praktyczne:**
-   - Dla dużych próbki liczb zmiennoprzecinkowych najlepszym wyborem jest stosowanie **podwójnej precyzji** (metoda a).
-   - **Algorytm Kahana** jest dobrym rozwiązaniem, gdy chcemy poprawić dokładność w sumowaniu przy pojedynczej precyzji.
+   - Dla małej próbki liczb zmiennoprzecinkowch można zastosować metodę a, która zapewnia dużą dokładność.
+   - **Algorytm Kahana** jest dobrym rozwiązaniem szczególnie gdy operujemy na pojedyńczej precyzji (float32) wtedy błąd wychodzi bardzo bliski zeru (bez metody safe_sum program zwraca równo 0.0).
 
 ## Zadanie 3: Unikanie zjawiska kancelacji
 

@@ -37,7 +37,7 @@ def sum_falling(numbers):
     return sum_single_precision(np.flip(np.sort(numbers)))
 
 # Prevents value of zero from happening
-def safe_sum(value, epsilon=1e-20):
+def safe_sum(value, epsilon=1e-16):
     return value if abs(value) > epsilon else epsilon
 
 n_array = np.array([10 ** k for k in range(4, 9)])
@@ -54,24 +54,24 @@ for n in n_array:
     print("Generated numbers")
 
     print("Generating task a...")
-    errors['a'].append(abs(safe_sum(sum_double_precision(subset)) - true_sum) / true_sum)
+    errors['a'].append(safe_sum(abs(sum_double_precision(subset) - true_sum) / true_sum))
     print("Done...")
 
     print("Generating task b...")
-    errors['b'].append(abs(safe_sum(sum_single_precision(subset)) - true_sum) / true_sum)
+    errors['b'].append(safe_sum(abs(sum_single_precision(subset) - true_sum) / true_sum))
     print("Done...")
 
     print("Generating task c...")
-    kahan_error = abs(safe_sum(sum_kahan_alg(subset)) - true_sum) / true_sum
+    kahan_error = safe_sum(abs(sum_kahan_alg(subset) - true_sum) / true_sum)
     errors['c'].append(kahan_error if kahan_error > 0 else 1e-20)
     print("Done...")
 
     print("Generating task d...")
-    errors['d'].append(abs(safe_sum(sum_rising(subset)) - true_sum) / true_sum)
+    errors['d'].append(safe_sum(abs(sum_rising(subset) - true_sum) / true_sum))
     print("Done...")
 
     print("Generating task e...")
-    errors['e'].append(abs(safe_sum(sum_falling(subset)) - true_sum) / true_sum)
+    errors['e'].append(safe_sum(abs(sum_falling(subset) - true_sum) / true_sum))
     print("Done...")
 
     print("Done the subset of: ", n)
