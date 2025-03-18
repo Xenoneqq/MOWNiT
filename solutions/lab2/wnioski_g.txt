@@ -1,0 +1,7 @@
+P :  Jaki wpływ ma współczynnik uwarunkowania na numeryczną interpretację wag?
+
+Wysoki współczynnik uwarunkowania oznacza, że macierz jest źle uwarunkowana, 
+co prowadzi do niestabilności numerycznej. 
+Małe zmiany w danych mogą powodować duże zmiany w wagach, 
+co utrudnia interpretację wyników. 
+Niski współczynnik uwarunkowania wskazuje na stabilność i wiarygodność wag.
