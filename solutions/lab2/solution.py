@@ -112,7 +112,7 @@ FP = conf_matric_quad[0, 1] # łagodny jako złośliwy
 FN = conf_matric_quad[1, 0] # złośliwy jako łagodny
 quad_acc = (TP + TN) / (TP + TN + FP + FN)
 
-print("Macierz pomyłek dla metody liniowej\n", conf_matric_lin)
-print("Dokładność: ", round(lin_acc, 2), "\n")
-print("Macierz pomyłek dla metody kwadratowej\n", conf_matric_quad)
-print("Dokładność: ", round(quad_acc, 2))
+# print("Macierz pomyłek dla metody liniowej\n", conf_matric_lin)
+# print("Dokładność: ", round(lin_acc, 2), "\n")
+# print("Macierz pomyłek dla metody kwadratowej\n", conf_matric_quad)
+# print("Dokładność: ", round(quad_acc, 2))
