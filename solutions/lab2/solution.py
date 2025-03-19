@@ -95,6 +95,7 @@ condition_num_quad = np.linalg.cond(ATA_quad)
 # Pdpkt H
 p_lin = A_validate_lin @ lin_weight
 p_quad = A_validate_quad @ quad_weight
+p_ridge = A_validate_lin @ w_ridge
 
 predictions_lin = np.where(p_lin > 0, 1, -1)
 conf_matric_lin = confusion_matrix(b_validate, predictions_lin)
@@ -112,7 +113,17 @@ FP = conf_matric_quad[0, 1] # łagodny jako złośliwy
 FN = conf_matric_quad[1, 0] # złośliwy jako łagodny
 quad_acc = (TP + TN) / (TP + TN + FP + FN)
 
+predictions_ridge = np.where(p_ridge > 0, 1, -1)
+conf_matric_ridge = confusion_matrix(b_validate, predictions_ridge)
+TP = conf_matric_ridge[1, 1] # złośliwy
+TN = conf_matric_ridge[0, 0] # łagodny
+FP = conf_matric_ridge[0, 1] # łagodny jako złośliwy
+FN = conf_matric_ridge[1, 0] # złośliwy jako łagodny
+ridge_acc = (TP + TN) / (TP + TN + FP + FN)
+
 # print("Macierz pomyłek dla metody liniowej\n", conf_matric_lin)
 # print("Dokładność: ", round(lin_acc, 2), "\n")
 # print("Macierz pomyłek dla metody kwadratowej\n", conf_matric_quad)
 # print("Dokładność: ", round(quad_acc, 2))
+print("Macierz pomyłek dla metody liniowej z regularyzacją\n", conf_matric_ridge)
+print("Dokładność: ", round(ridge_acc, 2))
