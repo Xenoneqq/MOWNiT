@@ -1,3 +1,7 @@
 - legenda dodac nazwy metod
+
 - dodanie wniosku w zad 2 do pozs. metod
+
 - dopisać że w s1 mooożna się doszukiwać że spr
+
+- sposob podmienic zamiast sum kwadratow ma być moduł
