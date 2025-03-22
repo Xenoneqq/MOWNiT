@@ -343,6 +343,7 @@ Na wykresie przedstawiono porównanie błędów względnych różnych metod sumo
 2. **Wnioski praktyczne:**
    - Dla małej próbki liczb zmiennoprzecinkowch można zastosować metodę a, która zapewnia dużą dokładność.
    - **Algorytm Kahana** jest dobrym rozwiązaniem szczególnie gdy operujemy na pojedyńczej precyzji (float32) wtedy błąd wychodzi bardzo bliski zeru (bez metody safe_sum program zwraca równo 0.0).
+   - Metoda pojedynczej precyzji oraz sumowanie zarówno w porządku malejącym jak i rosnącym wykazało dużo mniejszą precyzję w porównaniu do pozostałych metod.
 
 ## Zadanie 3: Unikanie zjawiska kancelacji
 

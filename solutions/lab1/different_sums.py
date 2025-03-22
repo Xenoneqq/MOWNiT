@@ -45,7 +45,7 @@ max_n = n_array[-1]
 
 numbers = generate_numbers(max_n)
 
-methods = ['a', 'b', 'c', 'd', 'e']
+methods = ['Podwójna Precyzja', 'Pojedyńcza Precyzja', 'Algorytm Kahana', 'Sumowanie Rosnąco', 'Sumowanie Malejąco']
 errors = {method: [] for method in methods}
 
 for n in n_array:
@@ -54,31 +54,31 @@ for n in n_array:
     print("Generated numbers")
 
     print("Generating task a...")
-    errors['a'].append(safe_sum(abs(sum_double_precision(subset) - true_sum) / true_sum))
+    errors['Podwójna Precyzja'].append(safe_sum(abs(sum_double_precision(subset) - true_sum) / true_sum))
     print("Done...")
 
     print("Generating task b...")
-    errors['b'].append(safe_sum(abs(sum_single_precision(subset) - true_sum) / true_sum))
+    errors['Pojedyńcza Precyzja'].append(safe_sum(abs(sum_single_precision(subset) - true_sum) / true_sum))
     print("Done...")
 
     print("Generating task c...")
     kahan_error = safe_sum(abs(sum_kahan_alg(subset) - true_sum) / true_sum)
-    errors['c'].append(kahan_error if kahan_error > 0 else 1e-20)
+    errors['Algorytm Kahana'].append(kahan_error if kahan_error > 0 else 1e-20)
     print("Done...")
 
     print("Generating task d...")
-    errors['d'].append(safe_sum(abs(sum_rising(subset) - true_sum) / true_sum))
+    errors['Sumowanie Rosnąco'].append(safe_sum(abs(sum_rising(subset) - true_sum) / true_sum))
     print("Done...")
 
     print("Generating task e...")
-    errors['e'].append(safe_sum(abs(sum_falling(subset) - true_sum) / true_sum))
+    errors['Sumowanie Malejąco'].append(safe_sum(abs(sum_falling(subset) - true_sum) / true_sum))
     print("Done...")
 
     print("Done the subset of: ", n)
 
 plt.figure(figsize=(10, 6))
 for method in methods:
-    plt.loglog(n_array, errors[method], 'o-', label=f'Metoda {method}')
+    plt.loglog(n_array, errors[method], 'o-', label=f'{method}')
 plt.xlabel('n (log)')
 plt.ylabel('Błąd względny (log)')
 plt.title('Porównanie błędów względnych metod sumowania')

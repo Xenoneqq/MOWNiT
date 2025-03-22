@@ -1,6 +1,6 @@
-- legenda dodac nazwy metod
+- legenda dodac nazwy metod (zrobione)
 
-- dodanie wniosku w zad 2 do pozs. metod
+- dodanie wniosku w zad 2 do pozs. metod (zrobione)
 
 - dopisać że w s1 mooożna się doszukiwać że spr
 
