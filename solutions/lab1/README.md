@@ -402,52 +402,68 @@ To rozwinięcie pozwala uniknąć odejmowania niemal równych liczb  i , co mog�
 
 ## Zadanie 4: Analiza niepewności sprawności kolektorów
 
-Efektywność η kolektora słonecznego dana jest wzorem:
+Efektywność \( \eta \) kolektora słonecznego dana jest wzorem:
 
 ```math
 \eta = K \frac{Q T_d}{I}
 ```
 
-Zmienna K jest stałą, więc jej błąd nie wpływa na niepewność względną η. Błąd względny η obliczamy jako:
+Zmienna \( K \) jest stałą, więc jej błąd nie wpływa na niepewność względną \( \eta \). Błąd względny \( \eta \) obliczamy jako:
 
 ```math
-\Delta \eta = \sqrt{(\Delta Q)^2 + (\Delta T_d)^2 + (\Delta I)^2}
+\Delta \eta = |\Delta Q| + |\Delta T_d| + |\Delta I|
 ```
 
 ### Obliczenia dla kolektora S1:
 
 ```math
-\Delta \eta_{S1} = \sqrt{(1.5\%)^2 + (1.0\%)^2 + (3.6\%)^2} = \sqrt{0.000225 + 0.0001 + 0.001296} = \sqrt{0.001621} \approx 3.6\%
+\Delta \eta_{S1} = |1.5\%| + |1.0\%| + |3.6\%| = 6.1\%
 ```
 
 ```math
-\eta_{S1} = 0.76 \pm 0.027
+\eta_{S1} = 0.76 \pm (0.76 \times 0.061) = 0.76 \pm 0.046
 ```
 
-Zakres możliwych wartości: \( 0.76 - 0.027 = 0.733 \) do \( 0.76 + 0.027 = 0.787 \).
+Zakres możliwych wartości:
+
+```math
+0.76 - 0.046 = 0.714
+```
+```math
+0.76 + 0.046 = 0.806
+```
 
 ### Obliczenia dla kolektora S2:
 
 ```math
-\Delta \eta_{S2} = \sqrt{(0.5\%)^2 + (1.0\%)^2 + (2.0\%)^2} = \sqrt{0.0025 + 0.0001 + 0.0004} = \sqrt{0.003} \approx 5.48\%
+\Delta \eta_{S2} = |0.5\%| + |1.0\%| + |2.0\%| = 3.5\%
 ```
 
 ```math
-\eta_{S2} = 0.70 \pm 0.038
+\eta_{S2} = 0.70 \pm (0.70 \times 0.035) = 0.70 \pm 0.025
 ```
 
-Zakres możliwych wartości: \( 0.70 - 0.038 = 0.662 \) do \( 0.70 + 0.038 = 0.738 \).
+Zakres możliwych wartości:
+
+```math
+0.70 - 0.025 = 0.675
+```
+```math
+0.70 + 0.025 = 0.725
+```
 
 ### Czy S1 ma większą sprawność niż S2?
 
-Ponieważ zakresy wartości η się nakładają
+Zakresy sprawności to:
 
+```math
+S1: (0.714 - 0.806)
 ```
-zakres S1 = (0.733 - 0.787)
-zakres S2 = (0.662 - 0.738)
+```math
+S2: (0.675 - 0.725)
 ```
 
-nie możemy stwierdzić z pewnością, że S1 jest bardziej efektywny niż S2.
+Zakresy **nadal się nakładają** (0.714 – 0.725), więc **wciąż nie możemy jednoznacznie stwierdzić, że S1 jest bardziej efektywny niż S2**. Możemy jednak z dużym prawdopodobieństwem stwierdzić, że sprawność S1 jest większa niż S2.
 
 #### Bibliografia:
 
