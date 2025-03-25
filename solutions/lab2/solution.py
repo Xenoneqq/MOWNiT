@@ -32,8 +32,13 @@ selected_features = ["radius (mean)", "perimeter (mean)", "area (mean)", "symmet
 A_training_lin = np.c_[np.ones(train_data.shape[0]), train_data.iloc[:, 2:].values]
 A_validate_lin = np.c_[np.ones(validate_data.shape[0]), validate_data.iloc[:, 2:].values]
 
-A_training_quad = np.c_[np.ones(train_data.shape[0]), train_data[selected_features].values, train_data[selected_features].pow(2).values]
-A_validate_quad = np.c_[np.ones(validate_data.shape[0]), validate_data[selected_features].values, validate_data[selected_features].pow(2).values]
+interaction_terms = [train_data[selected_features[i]] * train_data[selected_features[j]] for i in range(len(selected_features)-1) for j in range(i, len(selected_features))]
+interaction_terms_validate = [validate_data[selected_features[i]] * validate_data[selected_features[j]] for i in range(len(selected_features)-1) for j in range(i, len(selected_features))]
+
+A_training_quad = np.c_[np.ones(train_data.shape[0]), train_data[selected_features].values, 
+                         np.column_stack(interaction_terms)]
+A_validate_quad = np.c_[np.ones(validate_data.shape[0]), validate_data[selected_features].values, 
+                         np.column_stack(interaction_terms_validate)]
 
 # print("Rozmiar macierzy A_train_lin: ", A_training_lin.shape)
 # print("Rozmiar macierzy A_train_quad: ", A_training_quad.shape)
@@ -45,8 +50,8 @@ A_validate_quad = np.c_[np.ones(validate_data.shape[0]), validate_data[selected_
 b_training = np.where(train_data["Malignant/Benign"] == "M", 1, -1)
 b_validate = np.where(validate_data["Malignant/Benign"] == "M", 1, -1)
 
-# print("Rozmiar wektora b_train:", b_train.shape)
-# print("Rozmiar wektora b_validate:", b_validate.shape)
+print("Rozmiar wektora b_train:", b_training.shape)
+print("Rozmiar wektora b_validate:", b_validate.shape)
 
 # pdpkt E
 # wektor_wag = (ATA)-1 AT b
@@ -121,9 +126,9 @@ FP = conf_matric_ridge[0, 1] # łagodny jako złośliwy
 FN = conf_matric_ridge[1, 0] # złośliwy jako łagodny
 ridge_acc = (TP + TN) / (TP + TN + FP + FN)
 
-# print("Macierz pomyłek dla metody liniowej\n", conf_matric_lin)
-# print("Dokładność: ", round(lin_acc, 2), "\n")
-# print("Macierz pomyłek dla metody kwadratowej\n", conf_matric_quad)
-# print("Dokładność: ", round(quad_acc, 2))
+print("Macierz pomyłek dla metody liniowej\n", conf_matric_lin)
+print("Dokładność: ", round(lin_acc, 2), "\n")
+print("Macierz pomyłek dla metody kwadratowej\n", conf_matric_quad)
+print("Dokładność: ", round(quad_acc, 2), "\n")
 print("Macierz pomyłek dla metody liniowej z regularyzacją\n", conf_matric_ridge)
 print("Dokładność: ", round(ridge_acc, 2))
