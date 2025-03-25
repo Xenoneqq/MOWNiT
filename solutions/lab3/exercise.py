@@ -15,18 +15,17 @@ def equation(t, j, n):
     return 1
 
 def create_matrix(X, n):
-    size = len(X)
-    A = np.zeros((size, size))
-    for i in range(size):
-        for j in range(1, size + 1):
-            A[i, j - 1] = equation(X[i], j, n)
-    return A
+    matrix = np.zeros(shape=(9, 9))
+    for i in range(9):
+        for j in range(9):
+            matrix[i][j] = equation(X[i], j+1, n)
+    matrix = np.matrix(matrix)
+    return matrix
 
-def horner(coeffs, t):
-    result = coeffs[-1]
-    for i in range(len(coeffs) - 2, -1, -1):
-        result = result * t + coeffs[i]
-    return result
+def interpolate(t, coeff, degree=0):
+    if degree == len(coeff) - 2:
+        return coeff[degree] + coeff[degree+1] * ((t-1940)/40)
+    return coeff[degree] + ((t-1940)/40) * interpolate(t, coeff, degree+1)
 
 x = [1900, 1910, 1920, 1930, 1940, 1950, 1960, 1970, 1980]
 y = [76212168, 92228496, 106021537, 123202624, 132164569, 151325798, 179323175, 203302031, 226542199]
@@ -44,7 +43,7 @@ print(f"Best condition number: {best_cond:.2e}")
 a = np.linalg.solve(best_matrix, y)
 
 x_vals = np.arange(1900, 1991, 1)
-y_vals = [horner(a, t) for t in x_vals]
+y_vals = [interpolate(t , a) for t in x_vals]
 
 print(f"Współczynniki a: {a}")
 
