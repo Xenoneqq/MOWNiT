@@ -1,0 +1,4 @@
+- dodać ifrmacje o utworzonym wielomianue względem punktów że mając n punktów mogliśmy
+stworzyć wielomian n-1 stopnia któy interpoluje rzeczywiste wartości, jest dokładnie jednen taki wielomian jednak
+ma różne implementacje w różnych bazach.
+
