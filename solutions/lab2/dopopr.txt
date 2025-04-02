@@ -1,6 +1,1 @@
-dodać cechy mieszane w b
-  cecha1 * cecha5
-
-dodatkowe wnioski o interpretowalności wag
-
-wniosek porównać metodą liniową do kwadratowej
+solve
