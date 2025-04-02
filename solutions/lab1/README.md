@@ -396,7 +396,7 @@ e^x - e^{-x} = 2x + \frac{2x^3}{3!} + \mathcal{O}(x^5)
 ```
 Dla małych \( x \) najlepszym przybliżeniem jest:
 ```math
-e^x - e^{-x} \approx 2x
+e^x - e^{-x} \approx 2x + \frac{2x^3}{3!}
 ```
 To rozwinięcie pozwala uniknąć odejmowania niemal równych liczb  i , co mogłoby prowadzić do znacznej utraty precyzji w pobliżu zera.
 
