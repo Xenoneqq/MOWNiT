@@ -54,6 +54,19 @@ for m in range(7):
     print(f"  Przewidziana populacja w 1990: {int(y_pred)}")
     print(f"  Błąd względny: {relative_error:.4f}%")
 
+    if m <= 6 :
+        xs = np.linspace(1900, 2000, 1000)
+        ys = predict(c, xs)
+        plt.figure(figsize=(10, 6))
+        plt.scatter(x, y, label="wartości prawdziwe", marker = 'o', color = 'red')
+        plt.scatter(predict_year, true_value, marker = 'o', color = 'black')
+        plt.plot(xs, ys, label="predictions")
+        plt.xlabel("x")
+        plt.ylabel("y")
+        plt.grid(True)
+        plt.legend()
+        plt.show()
+
     k = m + 1
     n = len(x)
 
