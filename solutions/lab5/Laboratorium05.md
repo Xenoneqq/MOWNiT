@@ -1,4 +1,4 @@
-# Sprawozdanie z Laboratorium 4
+# Sprawozdanie z Laboratorium 5
 
 ## Autorzy: Mateusz Pawliczek, Piotr Świerzy
 
