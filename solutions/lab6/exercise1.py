@@ -3,9 +3,6 @@ import matplotlib.pyplot as plt
 import scipy
 import scipy.integrate
 
-m_start = 1
-m_end = 25
-
 def f(x):
     return 4 / (1 + x**2)
 
@@ -44,29 +41,22 @@ simp_errors = [relative_error(simpsons_formula(0, 1, n)) for n in n_values]
 
 # zadanie 2
 
-exact_quad = np.pi
-
-def g(x):
-    return 4/(1 + x ** 2)
-
-def g_trans(x):
-    return g(x/2 + 1/2)
+def f_trans(x):
+    return f(x/2 + 1/2)
 
 gauss_errors = []
 
 for n in n_values:
     x, w = np.polynomial.legendre.leggauss(n)
-    approx = np.sum(g_trans(x) * w) / 2
-    rel_err = np.abs((approx - exact_quad) / exact_quad)
-    gauss_errors.append(rel_err)
+    approx = np.sum(f_trans(x) * w) / 2
+    gauss_errors.append(relative_error(approx))
 
 
 plt.figure(figsize=(10, 6))
 plt.plot(n_values + 1, mid_errors, label='Prostokąty (środek)', color='blue', marker='o')
 plt.plot(n_values + 1, trap_errors, label='Trapezy', color='green', marker='x')
 plt.plot(n_values + 1, simp_errors, label='Simpson', color='red', marker='s')
-plt.plot(n_values + 1, gauss_errors, label='Gauss-Legendre', color='yellow',  marker='o', linestyle='-')
-
+plt.plot(n_values + 1, gauss_errors, label='Gauss-Legendre', color='black',  marker='o', linestyle='-')
 plt.yscale('log')
 plt.xlabel('Liczba ewaluacji funkcji (n + 1)')
 plt.ylabel('Błąd względny')
@@ -82,9 +72,9 @@ mid_min = np.min(mid_errors)
 trap_min = np.min(trap_errors)
 simp_min = np.min(simp_errors)
 
-print("Najmniejszy błąd met. kwadratów : ", mid_min);
-print("Najmniejszy błąd met. trapezów : ", trap_min);
-print("Najmniejszy błąd met. simpsona : ", simp_min);
+print("Najmniejszy błąd met. kwadratów : ", mid_min)
+print("Najmniejszy błąd met. trapezów : ", trap_min)
+print("Najmniejszy błąd met. simpsona : ", simp_min)
 
 # Wynik porównać z lab 1
 
