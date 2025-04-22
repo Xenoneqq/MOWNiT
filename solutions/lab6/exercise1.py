@@ -42,12 +42,31 @@ mid_errors = [relative_error(midpoint_rectangular_formula(0, 1, n)) for n in n_v
 trap_errors = [relative_error(trapezoidal_formula(0, 1, n)) for n in n_values]
 simp_errors = [relative_error(simpsons_formula(0, 1, n)) for n in n_values]
 
+# zadanie 2
+
+exact_quad = np.pi
+
+def g(x):
+    return 4/(1 + x ** 2)
+
+def g_trans(x):
+    return g(x/2 + 1/2)
+
+gauss_errors = []
+
+for n in n_values:
+    x, w = np.polynomial.legendre.leggauss(n)
+    approx = np.sum(g_trans(x) * w) / 2
+    rel_err = np.abs((approx - exact_quad) / exact_quad)
+    gauss_errors.append(rel_err)
+
+
 plt.figure(figsize=(10, 6))
 plt.plot(n_values + 1, mid_errors, label='Prostokąty (środek)', color='blue', marker='o')
 plt.plot(n_values + 1, trap_errors, label='Trapezy', color='green', marker='x')
 plt.plot(n_values + 1, simp_errors, label='Simpson', color='red', marker='s')
+plt.plot(n_values + 1, gauss_errors, label='Gauss-Legendre', color='yellow',  marker='o', linestyle='-')
 
-plt.xscale('log')
 plt.yscale('log')
 plt.xlabel('Liczba ewaluacji funkcji (n + 1)')
 plt.ylabel('Błąd względny')
