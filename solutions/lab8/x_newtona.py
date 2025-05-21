@@ -1,21 +1,24 @@
-from scipy.optimize import root
 import numpy as np
 
 def f_vec(v):
     x1, x2 = v
     f1 = x1**2 + x2**2 - 1
     f2 = x1**2 - x2
-    return [f1, f2]
+    return np.array([f1, f2])
 
 def x_n_plus_1(vn):
     x1, x2 = vn
-    jakobian_reversed = np.linalg.inv([[2*x1, 2*x2], [2*x1, -1]])
 
-    return vn - jakobian_reversed @ f_vec(vn)
+    jakobian = np.array([[2*x1, 2*x2], [2*x1, -1]])
+
+    res = np.linalg.solve(jakobian, -f_vec(vn))
+
+    return res + vn
 
 def x_newtona(x0):
     x1 = x_n_plus_1(x0)
-    while(np.linalg.norm(x1-x0) > 0.0001):
+    while(np.linalg.norm(x1-x0) > 0.01):
+        print(np.linalg.norm(x1-x0))
         x0, x1 = x1, x_n_plus_1(x1)
     return x1
 

@@ -1,5 +1,0 @@
-z2
-- zadanie 2 brakuje phi4 na wykresie
-
-z4
-- manualnie bez użycia funkcji bibliotecznych
