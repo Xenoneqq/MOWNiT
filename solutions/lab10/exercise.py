@@ -14,7 +14,7 @@ def dx(x, y): return x * (alpha1 - beta1 * y)
 def dy(x, y): return y * (-alpha2 + beta2 * x)
 
 # Invariant
-def invariant(x, y): 
+def invariant(x, y):
     return beta2 * x + beta1 * y - alpha2 * np.log(x) - alpha1 * np.log(y)
 
 # Metody numeryczne
@@ -56,10 +56,12 @@ def euler_implicit():
     def equation(next, prev):
         x_n, y_n = next
         x_p, y_p = prev
-        return [x_n-x_p- h*(alpha1 - beta1*y_n), y_n-y_p- h*(-alpha2 + beta2*x_n)]
+        return [x_n-x_p - h*dx(x_n, y_n), y_n-y_p - h*dy(x_n, y_n)]
+    
     for n in range(N-1):
         sol = fsolve(equation, [x[n], y[n]], args=([x[n], y[n]]))
         x[n+1], y[n+1] = sol
+
     return x, y
 
 # Wykresy
@@ -93,7 +95,7 @@ def plot_all_methods():
     plt.xlabel("Czas"); plt.ylabel("H(x, y)"); plt.legend(); plt.grid(); plt.show()
 
 # Uruchom wykresy
-#plot_all_methods()
+# plot_all_methods()
 
 
 # 1d) Estymacja parametrów
