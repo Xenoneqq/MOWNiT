@@ -47,7 +47,7 @@ def gradient_descent(A, b, max_iter=100000, tol=1e-10):
         v_next = beta*v + (1-beta)*grad #with momentum
         # v_next = beta*v + (1-beta)* (ATA @ (w - alpha*beta*v) - ATb) #Nestrov
         # w_new = w - alpha * grad #fixed alpha
-        # w_new = alpha * (lbda ** i) * grad #decaying alpha
+        # w_new = w - alpha * (lbda ** i) * grad #decaying alpha
         # w_new = w - alpha / (1 + lbda * i) * grad #inverse decaying alpha
         w_new = w - alpha * v_next #with momentum/Nestrov
         loss = 0.5 * np.linalg.norm(A @ w_new - b) ** 2
