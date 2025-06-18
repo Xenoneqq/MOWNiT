@@ -1,0 +1,19 @@
+--- Uruchomienie 1 ---
+Czas obliczeń: 70.6686 s
+Wartość funkcji F po optymalizacji: 76.9744
+
+--- Uruchomienie 2 ---
+Czas obliczeń: 69.9598 s
+Wartość funkcji F po optymalizacji: 74.7293
+
+--- Uruchomienie 3 ---
+Czas obliczeń: 69.7139 s
+Wartość funkcji F po optymalizacji: 73.1258
+
+--- Uruchomienie 4 ---
+Czas obliczeń: 69.9671 s
+Wartość funkcji F po optymalizacji: 76.7375
+
+--- Uruchomienie 5 ---
+Czas obliczeń: 71.5286 s
+Wartość funkcji F po optymalizacji: 73.7737
