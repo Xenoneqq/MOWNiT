@@ -1,1 +1,2 @@
 solve
+dodać rozwiązanie metody linowej przy użyciu SVD least squares. (lstsq)
